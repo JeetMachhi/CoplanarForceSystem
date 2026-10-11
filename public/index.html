@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ForceLab — Force Diagram Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="logo">∑</span>Force<span>Lab</span></a>
+  <span class="top-label">ENGINEERING MECHANICS</span>
+</header>
+<main class="layout">
+  <section class="intro">
+    <div class="eyebrow">COPLANAR FORCE SYSTEM</div>
+    <h1>Enter forces.<br><span>See the diagram.</span></h1>
+    <p>Add each force's magnitude and angle. The force arrows, components, and resultant update automatically.</p>
+  </section>
+  <section class="workspace">
+    <aside class="controls card">
+      <div class="card-head"><span class="step">01</span><div><h2>Input forces</h2><p>Angle measured counterclockwise from +X</p></div></div>
+      <form id="forceForm">
+        <div class="fields">
+          <label>Magnitude<input id="magnitude" type="number" min="0" step="any" placeholder="e.g. 25" required></label>
+          <label>Angle (°)<input id="angle" type="number" step="any" placeholder="e.g. 30" required></label>
+        </div>
+        <button class="btn primary" type="submit">＋ Add force</button>
+      </form>
+      <div class="quick-angle">
+        <span>Quick angles</span>
+        <button data-angle="0">0° →</button><button data-angle="90">90° ↑</button><button data-angle="180">180° ←</button><button data-angle="270">270° ↓</button>
+      </div>
+      <div class="list-head"><h3>Your forces</h3><button id="clear" class="link">Clear all</button></div>
+      <div id="forceList" class="force-list"></div>
+      <div class="actions"><button id="example" class="btn secondary">Load example</button></div>
+      <div class="tip"><b>Tip</b><p>Use negative angles for clockwise directions. For example, −30° is the same direction as 330°.</p></div>
+    </aside>
+    <section class="visual-column">
+      <div class="diagram-card card">
+        <div class="card-head"><span class="step">02</span><div><h2>Force diagram</h2><p>Vector directions and resultant</p></div><span class="live"><i></i> LIVE</span></div>
+        <div class="canvas-wrap"><canvas id="diagram" aria-label="Diagram of forces on X and Y axes"></canvas></div>
+        <div class="legend"><span><i class="dot forces-dot"></i>Individual forces</span><span><i class="dot resultant-dot"></i>Resultant R</span><span><i class="dot component-dot"></i>Components</span></div>
+      </div>
+      <div class="results card">
+        <div class="card-head"><span class="step">03</span><div><h2>Calculated result</h2><p>Updated from your inputs</p></div></div>
+        <div class="metrics">
+          <div class="metric main-metric"><span>RESULTANT MAGNITUDE · R</span><strong id="resultant">—</strong><small id="unit">force units</small></div>
+          <div class="metric"><span>DIRECTION</span><strong id="direction">—</strong><small>from +X, counterclockwise</small></div>
+          <div class="metric"><span>ΣFx</span><strong id="sumX">—</strong><small>horizontal component</small></div>
+          <div class="metric"><span>ΣFy</span><strong id="sumY">—</strong><small>vertical component</small></div>
+        </div>
+        <div class="steps" id="working"><p>Add a force to see the calculation steps.</p></div>
+        <div class="bottom-actions"><button id="copy" class="btn secondary">Copy results</button><button id="print" class="btn secondary">Print / Save PDF</button></div>
+      </div>
+    </section>
+  </section>
+  <footer>ForceLab <span>·</span> Manual input, automatic visualization</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
